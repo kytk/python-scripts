@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Python script to resize images
+# cited from https://note.nkmk.me/python-pillow-basic/
+
 import os
 import glob
 from PIL import Image
