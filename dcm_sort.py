@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # DICOM sorting script using pydicom
-# This script is based on the script provided by Yuya Saito
+# Part of this script is based on the script provided by Yuya Saito
 
 # 17 Jan 2022 K. Nemoto
  
@@ -16,7 +16,7 @@ sort dicom files.
 '''
 __epilog__ = '''
 examples:
-  dcm_sort DICOM_DIR
+  dcm_sort.py DICOM_DIR
 '''
 
 def generate_dest_dir_name(dicom_dataset):
@@ -24,6 +24,7 @@ def generate_dest_dir_name(dicom_dataset):
     return re.sub(r'[\\|/|:|?|"|<|>|\|]|\*', '', rule_text)
 
 def copy_dicom_files(src_dir):
+    # make a directory "sorted" if it doesn't exist
     dir_names = []
     if not os.path.exists('sorted'):
         os.makedirs('sorted')
