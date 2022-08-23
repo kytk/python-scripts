@@ -4,12 +4,12 @@
 # DICOM sorting script using pydicom
 # Part of this script is based on the script provided by Yuya Saito
 
-# 17 Jan 2022 K. Nemoto
+# 07 Aug 2022 K. Nemoto
  
 import sys, os, time, re, shutil, argparse, subprocess
 import pydicom
  
-__version__ = '1.1 (2022/01/17)'
+__version__ = '1.2 (2022/08/07)'
  
 __desc__ = '''
 sort dicom files.
@@ -20,7 +20,9 @@ examples:
 '''
 
 def generate_dest_dir_name(dicom_dataset):
-    rule_text = dicom_dataset.SeriesDescription.replace(' ','_')
+    seriesnumber = str(dicom_dataset.SeriesNumber).zfill(2)
+    seriesdescrip = dicom_dataset.SeriesDescription.replace(' ','_')
+    rule_text = '{}_{}'.format(seriesnumber, seriesdescrip) 
     return re.sub(r'[\\|/|:|?|"|<|>|\|]|\*', '', rule_text)
 
 def copy_dicom_files(src_dir):
